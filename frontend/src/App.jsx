@@ -13,7 +13,6 @@ function App() {
     <>
       <BrowserRouter>
         <Provider store={store}>
-          <h2>RAS-Track</h2>
           <Suspense fallback={<PageLoader></PageLoader>}>
             <RastrackOS />
           </Suspense>

@@ -1,4 +1,5 @@
 import { ConfigProvider } from "antd";
+import NotificationShow from "@/components/NotificationShow";
 
 function Localization({ children }) {
   return (
@@ -12,7 +13,7 @@ function Localization({ children }) {
           },
         }}
       >
-        {children}
+        <NotificationShow>{children}</NotificationShow>
       </ConfigProvider>
     </>
   );

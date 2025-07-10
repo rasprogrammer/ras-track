@@ -4,13 +4,7 @@ import { notify } from "@/utils/notificationService";
 
 
 const errorHandler = (error) => {
-    if (!navigator.onLine) {        
-
-        notification.config({
-            duration: 15,
-            maxCount: 1,
-        });
-
+    if (!navigator.onLine) {
         notify('error', {
             message: "No internet connection",
             description: "Cannot connet to the Internet, Check your internet network"
@@ -23,12 +17,21 @@ const errorHandler = (error) => {
         }
     }
 
+    const { response } = error;
 
-    return {
-        success: false,
-        result: null,
-        message: "Cannot connect to the server, Check your internet network",
+    if (!response) {
+        notify('error', {
+            message: "Problem connecting to server.",
+            description: "Cannot connect to server, Try again later.",
+        });
+        return {
+            success: false,
+            result: null,
+            message: "Cannot connect to the server, Check your internet network",
+        }
     }
+
+    console.log('resonse end > ', response);
 };
 
 export default errorHandler;

@@ -9,8 +9,12 @@ export const login =
             dispatch({
                 type: actionTypes.REQUEST_LOADING
             });
-
+            
             const data = await authService.login({ loginData });
+            
+            // artification delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
 
             if (data.success === true) {
                 const auth_state = {

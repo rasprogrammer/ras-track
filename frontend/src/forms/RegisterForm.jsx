@@ -4,6 +4,7 @@ import useLanguage from "@/locale/useLanguage";
 
 const RegisterForm = () => {
   const translate = useLanguage();
+  
   return (
     <>
       <Form.Item

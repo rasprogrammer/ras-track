@@ -14,3 +14,13 @@ export const login = async ({ loginData }) => {
         return errorHandler(error);
     }
 };
+
+export const register = async ({ registerData }) => {
+    try {
+        const data = await axios.post(API_BASE_URL + `register?timestamp=${new Date().getTime()}`, registerData);
+        console.log('data > ', data);
+        return registerData;
+    } catch (error) {
+        return errorHandler(error);
+    }
+};

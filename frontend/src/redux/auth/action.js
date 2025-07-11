@@ -9,9 +9,9 @@ export const login =
             dispatch({
                 type: actionTypes.REQUEST_LOADING
             });
-            
+
             const data = await authService.login({ loginData });
-            
+
             // artification delay
             await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -35,4 +35,21 @@ export const login =
                 });
             }
 
-        }
+        };
+
+export const register =
+    ({ registerData }) =>
+        async (dispatch) => {
+            dispatch({ type: actionTypes.REQUEST_LOADING });
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            const data = await authService.register({ registerData });
+            console.log(data);
+
+            if (data.success === true) {
+
+            } else {
+                dispatch({ type: actionTypes.REQUEST_FAILED });
+            }
+
+        };

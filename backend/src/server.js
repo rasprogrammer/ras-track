@@ -1,6 +1,7 @@
 require("module-alias/register");
 const mongoose = require("mongoose");
 const path = require("path");
+const { globSync } = require("glob");
 
 // Make sure we are running node 7.6+
 const [major] = process.versions.node.split('.').map(parseFloat);
@@ -18,6 +19,12 @@ mongoose.connect(process.env.DATABASE);
 mongoose.connection.on('error', (error) => {
     console.log('error > ', error);
 });
+
+const modelsFiles = globSync("./src/models/**/*.js");
+
+for (const filePath of modelsFiles) {
+    require(path.resolve(filePath));
+}
 
 const app = require("./app");
 app.set("port", process.env.PORT || 8080);

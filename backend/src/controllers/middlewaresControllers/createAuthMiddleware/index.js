@@ -1,3 +1,4 @@
+const register = require('./register');
 
 const createAuthMiddleware = (userModel) => {
     let authMethods = {};
@@ -6,9 +7,7 @@ const createAuthMiddleware = (userModel) => {
 
     };
 
-    authMethods.register = (req, res, next) => {
-        
-    };
+    authMethods.register = (req, res, next) => register(req, res, next);
 
     authMethods.login = (req, res, next) => {
 

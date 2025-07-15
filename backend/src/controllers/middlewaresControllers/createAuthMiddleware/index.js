@@ -7,7 +7,9 @@ const createAuthMiddleware = (userModel) => {
 
     };
 
-    authMethods.register = (req, res, next) => register(req, res, next);
+    authMethods.register = (req, res) => register(req, res, {
+        userModel
+    });
 
     authMethods.login = (req, res, next) => {
 

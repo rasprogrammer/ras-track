@@ -31,5 +31,5 @@ app.set("port", process.env.PORT || 8080);
 
 const server = app.listen(
     app.get('port'),
-    () => console.log('server is running...')
+    () => console.log(`server is running on http://localhost:${app.get('port')}`)
 );

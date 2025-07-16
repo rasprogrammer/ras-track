@@ -26,6 +26,7 @@ const adminSchema = new mongoose.Schema({
         type: String, 
         trim: true,
     },
+    country: String,
     created: {
         type: Date,
         default: Date.now(),

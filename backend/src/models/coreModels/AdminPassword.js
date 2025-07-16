@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
+const saltRound = 10;
 
 const adminPasswordSchema = new mongoose.Schema({
     removed: {
@@ -37,12 +38,12 @@ const adminPasswordSchema = new mongoose.Schema({
 
 });
 
-adminPasswordSchema.methods.generateHash = (salt, password) => {
-    return bcrypt.hashSync(salt + password);
+adminPasswordSchema.methods.generateHash = function (salt, password) {
+    return bcrypt.hashSync(salt + password, saltRound);
 };
 
-adminPasswordSchema.methods.validPassword = (salt, userPassword) => {
-    return bcrypt.compareSync(salt + userPassword + this.password);
+adminPasswordSchema.methods.validPassword = function (salt, userPassword) {
+    return bcrypt.compareSync(salt + userPassword, this.password);
 };
 
 module.exports = mongoose.model('AdminPassword', adminPasswordSchema);

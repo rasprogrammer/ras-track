@@ -51,7 +51,9 @@ const register = async (req, res, { userModel }) => {
         const newUser = await UserModel.create([{
             name: name,
             email: email,
-            country: country
+            country: country,
+            removed: false,
+            enabled: true,
         }], { session });
 
         const salt = await bcrypt.genSalt(10);
